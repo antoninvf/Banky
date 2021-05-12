@@ -7,7 +7,7 @@ public class BankAccount {
     public String uid;
     public int balance;
 
-    public BankAccount (Person person, Bank bank, String uid) {
+    public BankAccount(Person person, Bank bank, String uid) {
         this.owner = person;
         this.bank = bank;
         this.uid = uid;
@@ -18,10 +18,21 @@ public class BankAccount {
         this.balance += amount;
     }
 
-    public void withdraw(int amount) {
-        if (this.balance - amount < 0) {
+    public boolean canWithdraw(int amount) {
+        if(this.balance - amount > 0) {
             this.balance -= amount;
+            return true;
         }
+        return false;
+    }
+
+    public void withdraw(int amount) {
+        canWithdraw(amount);
+    }
+
+    public void sendMoney(int amount) {
+        deposit(amount);
+
     }
 
     public Person getOwner() {
@@ -36,4 +47,7 @@ public class BankAccount {
         return uid;
     }
 
+    public Bank getBank() {
+        return bank;
+    }
 }

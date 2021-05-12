@@ -20,12 +20,13 @@ public class Bank {
         baccs.add(new BankAccount(person, bank, uid(person)));
     }
 
-    public ArrayList<BankAccount> viewBaccs(Person person) {
-        return this.baccs;
-    }
-
     public void deleteBacc(Person person) {
         baccs.remove(getBacc(person));
+    }
+
+    public void sendMoney(Person sender, int amount) {
+        BankAccount bacS = getBacc(sender);
+        bacS.sendMoney(amount);
     }
 
     private String uid(Person p) {
@@ -52,5 +53,4 @@ public class Bank {
     public String getShortname() {
         return this.shortname;
     }
-
 }
